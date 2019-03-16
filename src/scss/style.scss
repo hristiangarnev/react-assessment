@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$white     : #fff;
+$black     : #000;
+$dark-gray : #333;
+$light-gray: #ccc;
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: " ";
+  clear: both;
+  height: 0;
+  font-size: 0;
+}
+
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+body {
+  font-family: 'Roboto';
+  font-size: 16px;
+  color: $dark-gray;
+}
+
+#wrapper {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.weather-day {
+  margin: 30px 0;
+  border: 1px solid $light-gray;
+  border-radius: 5px;
+  overflow: hidden;
+  
+  .weather-day-title {
+    border-bottom: 1px solid $light-gray;
+    padding: 8px 5px;
+    background: $light-gray;
+  }
+
+  .weather-time {
+    background: url('/images/time.png') no-repeat top 2px left;
+    background-size: 15px;
+    padding-left: 20px;
+    text-align: left;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .weather-temperature {
+    background: url('/images/temperature.png') no-repeat;
+    background-size: 20px;
+    display: block;
+    padding-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+    width: 50px;
+    float: left;
+  }
+
+  .weather-humidity {
+    background: url('/images/humidity.png') no-repeat;
+  }
+
+  .weather-temp-min {
+    background: url('/images/temp_min.png') no-repeat;
+  }
+
+  .weather-temp-max {
+    background: url('/images/temp_max.png') no-repeat;
+  }
+
+  .weather-wind-speed {
+    background: url('/images/wind.png') no-repeat;
+  }
+
+  .weather-wind-speed,
+  .weather-temp-max,
+  .weather-temp-min,
+  .weather-humidity {
+    background-size: 15px;
+    display: inline-block;
+    padding-left: 20px;
+    margin-right: 8px;
+    background-position: left center;
+  }
+
+  .weather-hour {
+    border-bottom: 1px solid $light-gray;
+    padding: 15px 25px 15px 160px;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 80px;
+      width: 1px;
+      height: 100%;
+      background: $light-gray;
+      content: '';
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &.Clouds {
+      background: url('/images/clouds.png');
+    }
+
+    &.Clear {
+      background: url('/images/clear.png');
+    }
+
+    &.Rain {
+      background: url('/images/rain.png');
+    }
+
+    &.Snow {
+      background: url('/images/snow.png');
+    }
+
+    &.Clouds,
+    &.Clear,
+    &.Rain,
+    &.Snow {
+      background-size: 40px;
+      background-position: 100px center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .weather-details-toggler {
+    line-height: 24px;
+    float: right;
+
+    &.active {
+      display: none;
+
+      & + .weather-details {
+        display: inline-block;
+      }
+    }
+  }
+  
+  .weather-details {
+    display: none;
+    line-height: 24px;
+  }
+}
+
+.city-input {
+  padding: 10px 5px;
+  border-radius: 5px 0 0 5px;
+}
+
+.city-button {
+  padding: 10px;
+  background: $dark-gray;
+  color: $white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.location-selector {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url('/images/location.png') no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+  margin: 4px 10px 0 0;
+}
+
+.city-input,
+.city-button {
+  border: 1px solid $dark-gray;
+  font-size: 13px;
+  vertical-align: top;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($black, .9);
+  text-align: center;
+
+  .spinner {
+    position: relative;
+    top: 50%;
+    width: 64px;
+    margin: 0 auto;
+    transform: translate3d(0, -50%, 0);
+    color: $white;
+
+    &:after {
+      width: 46px;
+      height: 46px;
+      content: '';
+      display: block;
+      margin: 1px;
+      border-radius: 50%;
+      border: 5px solid $white;
+      border-color: $white transparent $white transparent;
+      animation: spinner 1.2s linear infinite;
+    }
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
